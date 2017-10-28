@@ -1,0 +1,30 @@
+<!--pages/inform/inform.wxml-->
+<view class='container'>
+    <view class='header'>
+          <view class='boldFont'>{{content.detail}}</view>
+          <view class="count">
+              <view class='count1'>阅读111100+</view>
+              <view class='count1' style="margin-left:30rpx;vertical-align: middle;">
+                    <image src="../images/zan.png"  
+                          style="width:30rpx; position: relative;top:4rpx;"    mode='widthFix'></image>10000
+                    </view>
+              </view>
+    </view>
+    <view class='margin'>
+        <view class='line'>
+            <view>原文封面</view>    
+        </view>
+    </view>
+    <view class='inform'>
+      <button open-type="share">
+          <view class='one'>
+              <image src="{{content.image}}" mode='widthFix'></image>
+          </view>
+          <view class='two'>{{content.title}}</view>
+      </button>
+    </view>
+    <view class='zhuangfa'>
+        <button open-type="share">发送给朋友</button>
+    </view>
+    <view class='navigator' bindtap='back'>返回首页</view>
+</view>

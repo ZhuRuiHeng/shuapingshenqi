@@ -1,0 +1,87 @@
+/* pages/inform/inform.wxss */
+page{
+  background: #f1f1f1;
+}
+.container {
+  background: #f1f1f1;
+  overflow: hidden;
+}
+.header{
+  background: #fff;
+}
+.container .header .boldFont{
+    font-size: 60rpx;
+    font-weight: bold;
+    text-align: center;
+    padding:100rpx 0;
+}
+.container .header .count{
+  width: 100%;
+  font-size:26rpx;
+  display: flex;
+  flex-direction: row;
+  height: 50rpx;
+  padding:20rpx;
+}
+.container .header .count view.count1{
+  display: inline-block;
+}
+.line{
+  font-size:24rpx;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  margin:0 auto;
+}
+.line view{
+  position: relative;
+  top:20rpx;
+  background: #f1f1f1;
+  width: 180rpx;
+  display: inline-block;
+}
+.margin{
+  width: 90%;
+  margin: 0 auto;
+}
+.zhuangfa button{
+  background: #000000;
+  color:#ffffff;
+  padding:0;
+  font-size: 28rpx;
+  width: 90%;
+  margin: 0 auto;
+}
+.navigator{
+  text-align: center;
+  font-size: 24rpx;
+  margin:20rpx 0;
+  padding:20rpx;
+  cursor: pointer;
+}
+.inform{
+    width: 90%;
+    margin:40rpx auto;
+    vertical-align: middle;
+}
+.inform .one{
+  width: 160rpx;
+  padding: 20rpx;
+}
+.inform .one image{
+  width:100%;
+}
+.inform .two{
+  font-size: 26rpx;
+  width: 100%;
+  padding-left: 20rpx;
+}
+.inform button{
+  width: 100%;
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  text-align: inherit;
+  border-radius:0;
+  vertical-align: middle;
+}

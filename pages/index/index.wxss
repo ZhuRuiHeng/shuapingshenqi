@@ -1,0 +1,57 @@
+/**index.wxss**/
+.container {
+  padding: 0;
+  overflow: hidden;
+}
+.swiper-tab{
+  width: 100%;
+  display: flex;
+  text-align: center;
+  font-size: 26rpx;
+  background: #373b3e;
+  color:#838587;
+}
+.swiper-tab  .swiper-tab-list{
+  flex:1;
+  padding:20rpx;
+  cursor: pointer;
+}
+.swiper-tab  .swiper-tab-list.active{
+  color:#ffffff;
+  border-bottom:2px solid #ffffff;
+  box-sizing: border-box;
+  margin-bottom:2rpx;
+}
+.content{
+  width: 100%;
+  overflow: hidden;
+  padding:20rpx;
+  box-sizing: border-box;
+}
+.content button{
+  float: left;
+  width: 49%;
+  vertical-align: middle;
+  margin:0rpx 0rpx 10rpx 0;
+  background: #fff;
+}
+.content button .top image{
+  width: 100%;
+}
+/*奇数  */
+.content button:nth-child(odd){ 
+  float: left;
+}
+/*偶数  */
+.content button:nth-child(even){
+  float: right;
+}
+button{
+  margin: 0;
+  padding:0;
+  line-height: 30rpx;
+}
+.content button .text{
+    font-size: 24rpx;
+    padding: 10rpx 0;
+}
