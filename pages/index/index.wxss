@@ -52,6 +52,12 @@ button{
   line-height: 30rpx;
 }
 .content button .text{
+     width: 100%;
     font-size: 24rpx;
     padding: 10rpx 0;
+    white-space:nowrap; 
+    text-overflow:ellipsis; 
+    -o-text-overflow:ellipsis; 
+    -moz-binding:url('ellipsis.xml#ellipsis'); 
+    overflow:hidden;
 }

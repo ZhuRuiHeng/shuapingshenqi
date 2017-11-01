@@ -1,7 +1,9 @@
 //index.js
 //获取应用实例
-const app = getApp()
-
+var common = require('../../common.js');
+var app = getApp();
+modules: [];//模板
+var sign = wx.getStorageSync('sign');
 Page({
   data: {
     tabList:[
@@ -24,10 +26,12 @@ Page({
         type:'spoof'
       }
     ],
-    content:[]
+    content:[],
+    type : 'img'
   },
   //事件处理函数
   tapKeyWorld:function(e){
+    var sign = wx.getStorageSync('sign');
     wx.showLoading({
       title: '加载中',
     })
@@ -44,8 +48,8 @@ Page({
         }
     }
     wx.request({
-      //?sign=" + that.data.sign + '&operator_id=' + that.data.operator_id,
-      url: "http://what-test.playonwechat.com/rush/get-images?sign=1ba9e27ead62643818245316f4fb5530&operator_id=190",
+      //
+      url: "http://what-test.playonwechat.com/rush/get-images?sign=" + sign + '&operator_id=' + app.data.kid,
       data:{
         type: type
       },
@@ -61,81 +65,73 @@ Page({
       }
     })
     that.setData({
-      tabList: tabList
+      tabList: tabList,
+      type: type
     })
     wx.hideLoading()
   },
   onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
+    var that = this;
+    var sign = wx.getStorageSync('sign');
+    that.setData({
+      sign: sign
+    })
+    //回调
+    common.getSign(function () {
+      var sign = wx.getStorageSync('sign');
+      console.log('commonsign:', sign);
+      that.setData({
+        sign: sign
       })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
+    })
+    
   },
   // 显示数据
   onShow: function () {
+    var sign = wx.getStorageSync('sign');
+    console.log("sign:",sign);
     wx.showLoading({
       title: '加载中',
     });
     var that = this;
     // 列表
-    wx.request({
-      //?sign=" + that.data.sign + '&operator_id=' + that.data.operator_id,
-      url: "http://what-test.playonwechat.com/rush/get-images?sign=1ba9e27ead62643818245316f4fb5530&operator_id=190",
-      header: {
-        'content-type': 'application/json'
-      },
-      method: "GET",
-      success: function (res) {
-        console.log(res);
-        that.setData({
-          content: res.data.data,
+    common.getSign(function () {
+       var sign = wx.getStorageSync("sign");
+        wx.request({
+          //?sign=" + that.data.sign + '&operator_id=' + that.data.operator_id,
+          url: "http://what-test.playonwechat.com/rush/get-images?sign=" + sign + '&operator_id=' + app.data.kid,
+          data: {
+            type: that.data.type
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          method: "GET",
+          success: function (res) {
+            console.log(res);
+            that.setData({
+              content: res.data.data,
+            })
+          }
         })
-      }
+        wx.hideLoading()
     })
-    wx.hideLoading()
+    
   },
 
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
   
     //设置分享
   onShareAppMessage: function (e) {
     console.log(e);
     var that = this;
     var type = e.target.dataset.type;
-    var gid = e.target.dataset.gid;
-    console.log(type);
+    var gid  = e.target.dataset.gid;
+    var title = e.target.dataset.title;
+    var image = e.target.dataset.image;
     if (type == 'spoof') {
         return {
-          title: '刷屏神器',
+          title: title,
+          imageUrl: image,
           path: '/pages/inform/inform?id=' + gid,
           success: function (res) {
             console.log(res);

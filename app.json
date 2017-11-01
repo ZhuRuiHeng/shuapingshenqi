@@ -1,5 +1,6 @@
 {
   "pages":[
+     "pages/star/star",
      "pages/index/index",
      "pages/inform/inform"
     
@@ -8,7 +9,8 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#373b3e",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "#fff"
+    "navigationBarTextStyle": "#fff",
+    "enablePullDownRefresh": false
   },
-  "debug": false
+   "debug": true
 }

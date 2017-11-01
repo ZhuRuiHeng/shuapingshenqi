@@ -9,7 +9,7 @@
     </view>
     <!--content  -->
     <view class='content'>
-          <button class='imgs' open-type="share" bindtap='shareImg'
+          <button class='imgs' open-type="share" bindtap='shareImg' data-title="{{item.title}}"  data-image="{{item.image}}"
                   wx:for="{{content}}" data-gid="{{item.id}}" data-type="{{item.type}}">
               <view class="top">
                   <image class='' src="{{item.image}}" mode='widthFix'></image>

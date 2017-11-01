@@ -1,4 +1,7 @@
 // pages/inform/inform.js
+var common = require('../../common.js');
+var app = getApp();
+var sign = wx.getStorageSync('sign');
 Page({
 
   /**
@@ -13,17 +16,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
     var that = this;
     that.setData({
-      id: options.id
+      id: options.id,
+      type: options.type
     })
+    
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    
   },
 
   /**
@@ -33,28 +39,31 @@ Page({
     wx.showLoading({
       title: '加载中',
     });
-    var that = this;
-    //console.log(that.data.id);
-    // 列表
-    wx.request({
-      //?sign=" + that.data.sign + '&operator_id=' + that.data.operator_id,
-      url: "http://what-test.playonwechat.com/rush/get-image-detail?sign=1ba9e27ead62643818245316f4fb5530&operator_id=190",
-      data:{
-          id:that.data.id
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      method: "GET",
-      success: function (res) {
-        console.log(res);
-        console.log(res.data.data);
-        that.setData({
-          content: res.data.data
+    // common.getSign(function () {
+        var sign = wx.getStorageSync('sign');
+        var that = this;
+        var id = that.data.id;
+        
+        // 列表
+        wx.request({
+          url: "http://what-test.playonwechat.com/rush/get-image-detail?sign=" + sign + '&operator_id=' + app.data.kid,
+          data:{
+              id:id
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          method: "GET",
+          success: function (res) {
+            console.log(res);
+            console.log(res.data.data);
+            that.setData({
+              content: res.data.data
+            })
+          }
         })
-      }
-    })
-    wx.hideLoading()
+        wx.hideLoading()
+    // })
   },
   back:function(){
     wx.navigateTo({
@@ -94,7 +103,20 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    var that = this;
+    return {
+      title: that.data.content.title,
+      imageUrl: that.data.content.image,
+      path: '/pages/inform/inform?id=' + that.data.id,
+      success: function (res) {
+        console.log(res);
+        // 转发成功
+      },
+      fail: function (res) {
+        console.log(res);
+        // 转发失败
+      }
+    }
   },
   
 })
