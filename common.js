@@ -9,7 +9,7 @@ function getSign(cb){
       console.log('kid：', kid);
       if (res.code) {
         wx.request({
-          url: 'http://what-test.playonwechat.com/api/auth-by-three?code=' + res.code + '&operator_id=' + kid,
+          url: 'https://what-test.playonwechat.com/api/auth-by-three?code=' + res.code + '&operator_id=' + kid,
           success(res) {
             console.log("缓存:", res);
             var sign = res.data.data.sign;

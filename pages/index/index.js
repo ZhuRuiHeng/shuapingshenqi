@@ -49,7 +49,7 @@ Page({
     }
     wx.request({
       //
-      url: "http://what-test.playonwechat.com/rush/get-images?sign=" + sign + '&operator_id=' + app.data.kid,
+      url: "https://what-test.playonwechat.com/rush/get-images?sign=" + sign + '&operator_id=' + app.data.kid,
       data:{
         type: type
       },
@@ -99,7 +99,7 @@ Page({
        var sign = wx.getStorageSync("sign");
         wx.request({
           //?sign=" + that.data.sign + '&operator_id=' + that.data.operator_id,
-          url: "http://what-test.playonwechat.com/rush/get-images?sign=" + sign + '&operator_id=' + app.data.kid,
+          url: "https://what-test.playonwechat.com/rush/get-images?sign=" + sign + '&operator_id=' + app.data.kid,
           data: {
             type: that.data.type
           },

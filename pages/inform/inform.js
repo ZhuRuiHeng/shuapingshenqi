@@ -46,7 +46,7 @@ Page({
         
         // 列表
         wx.request({
-          url: "http://what-test.playonwechat.com/rush/get-image-detail?sign=" + sign + '&operator_id=' + app.data.kid,
+          url: "https://what-test.playonwechat.com/rush/get-image-detail?sign=" + sign + '&operator_id=' + app.data.kid,
           data:{
               id:id
           },
